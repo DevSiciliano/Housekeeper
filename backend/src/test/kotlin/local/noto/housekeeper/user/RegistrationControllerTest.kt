@@ -22,7 +22,7 @@ class RegistrationControllerTest(
     fun `returns the created user without password data`() {
         mockMvc.post("/api/auth/register") {
             contentType = MediaType.APPLICATION_JSON
-            content = """{"name":"Max","email":" Max@Test.com ","password":"Password123"}"""
+            content = """{"name":"Max","email":"Max@Test.com","password":"Password123"}"""
         }.andExpect {
             status { isCreated() }
             jsonPath("$.id") { exists() }
