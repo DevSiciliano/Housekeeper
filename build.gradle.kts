@@ -1,22 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.3.10"
-}
-
-group = "local.noto"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
-tasks.test {
-    useJUnitPlatform()
+    kotlin("jvm") version "2.3.10" apply false
+    kotlin("plugin.spring") version "2.3.10" apply false
+    kotlin("plugin.jpa") version "2.3.10" apply false
+    id("org.springframework.boot") version "4.1.1" apply false
 }
