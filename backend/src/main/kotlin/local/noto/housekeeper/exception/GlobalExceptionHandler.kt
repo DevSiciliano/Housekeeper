@@ -19,4 +19,14 @@ class GlobalExceptionHandler {
         ).apply {
             title = "E-mail already registered"
         }
+
+    // 401: authentication failed; one neutral message for unknown e-mail and wrong password alike
+    @ExceptionHandler(InvalidCredentialsException::class)
+    fun handleInvalidCredentials(): ProblemDetail =
+        ProblemDetail.forStatusAndDetail(
+            HttpStatus.UNAUTHORIZED,
+            "Invalid e-mail or password.",
+        ).apply {
+            title = "Invalid credentials"
+        }
 }
