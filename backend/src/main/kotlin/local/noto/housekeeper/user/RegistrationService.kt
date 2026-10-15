@@ -1,13 +1,10 @@
 package local.noto.housekeeper.user
 
 import jakarta.transaction.Transactional
+import local.noto.housekeeper.exception.EmailAlreadyRegisteredException
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.time.Instant
-
-// ### EXCEPTION NEEDS TO MOVE IN TO EXCEPTION PACKAGE WHEN CREATED ###
-class EmailAlreadyRegisteredException(email: String) :
-    RuntimeException("The E-Mail $email is already registered.")
 
 @Service
 class RegistrationService(
