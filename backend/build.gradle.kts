@@ -22,6 +22,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("tools.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.security:spring-security-crypto")
 
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
