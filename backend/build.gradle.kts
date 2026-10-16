@@ -22,13 +22,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("tools.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    // Enthält auch spring-security-crypto (BCryptPasswordEncoder)
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security-oauth2-resource-server")
 
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
 
-    // H2 nur für das Profil "local" (bootRun ohne PostgreSQL) und für Tests
+    // H2 only for the "local" profile
     developmentOnly(platform(SpringBootPlugin.BOM_COORDINATES))
     developmentOnly("com.h2database:h2")
     testRuntimeOnly("com.h2database:h2")
