@@ -1,15 +1,18 @@
 package local.noto.housekeeper.user
 
+import com.jayway.jsonpath.JsonPath
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
 import org.springframework.http.MediaType
+import org.springframework.security.oauth2.jwt.JwtDecoder
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 import org.springframework.transaction.annotation.Transactional
+import kotlin.test.assertEquals
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -17,12 +20,15 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class LoginControllerTest(
     @Autowired private val mockMvc: MockMvc,
-    @Autowired private val registration: RegistrationService
+    @Autowired private val registration: RegistrationService,
+    @Autowired private val decoder: JwtDecoder
 ) {
+
+    private lateinit var registered: AppUser
 
     @BeforeEach
     fun setUp() {
-        registration.register("Max", "max@test.com", "Password123")
+        registered = registration.register("Max", "max@test.com", "Password123")
     }
 
     @Test
@@ -36,6 +42,21 @@ class LoginControllerTest(
             jsonPath("$.user.email") { value("max@test.com") }
             jsonPath("$.user.passwordHash") { doesNotExist() }
         }
+    }
+
+    @Test
+    fun `returns an access token for the logged-in user`() {
+        val body = mockMvc.post("/api/auth/login") {
+            contentType = MediaType.APPLICATION_JSON
+            content = """{"email":"max@test.com","password":"Password123"}"""
+        }.andExpect {
+            status { isOk() }
+        }.andReturn().response.contentAsString
+
+        val token = JsonPath.read<String>(body, "$.accessToken")
+
+        // Decoding also verifies the signature, so the token was signed with the configured key
+        assertEquals(registered.id.toString(), decoder.decode(token).subject)
     }
 
     @Test
