@@ -29,4 +29,14 @@ class GlobalExceptionHandler {
         ).apply {
             title = "Invalid credentials"
         }
+
+    // 401: the token is genuine, but its account is gone, so the client has to log in again
+    @ExceptionHandler(UnknownAccountException::class)
+    fun handleUnknownAccount(): ProblemDetail =
+        ProblemDetail.forStatusAndDetail(
+            HttpStatus.UNAUTHORIZED,
+            "This account no longer exists.",
+        ).apply {
+            title = "Unknown account"
+        }
 }
