@@ -49,4 +49,13 @@ class GlobalExceptionHandlerTest(
         assertEquals("Invalid credentials", problem.title)
         assertEquals("Invalid e-mail or password.", problem.detail)
     }
+
+    @Test
+    fun `returns 401 as problem detail when the account no longer exists`() {
+        val problem = GlobalExceptionHandler().handleUnknownAccount()
+
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), problem.status)
+        assertEquals("Unknown account", problem.title)
+        assertEquals("This account no longer exists.", problem.detail)
+    }
 }
