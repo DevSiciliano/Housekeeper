@@ -25,6 +25,11 @@ class SecurityConfig {
                 authorize("/error", permitAll)
                 authorize(anyRequest, authenticated)
             }
+            // Reads "Authorization: Bearer <token>" and checks it with the JwtDecoder from JwtConfig;
+            // a missing, forged or expired token ends in 401 instead of the default 403
+            oauth2ResourceServer {
+                jwt { }
+            }
         }
         return http.build()
     }
