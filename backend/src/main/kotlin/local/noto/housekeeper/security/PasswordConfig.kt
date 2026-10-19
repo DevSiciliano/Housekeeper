@@ -1,4 +1,4 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,6 +1,8 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import jakarta.validation.Valid
+import local.noto.housekeeper.user.UserResponse
+import local.noto.housekeeper.user.toResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

@@ -1,4 +1,4 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import local.noto.housekeeper.exception.EmailAlreadyRegisteredException
 import org.junit.jupiter.api.Test

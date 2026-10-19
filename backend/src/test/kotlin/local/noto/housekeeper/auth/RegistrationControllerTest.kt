@@ -1,4 +1,4 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

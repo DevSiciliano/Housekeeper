@@ -1,6 +1,7 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import com.jayway.jsonpath.JsonPath
+import local.noto.housekeeper.user.AppUser
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

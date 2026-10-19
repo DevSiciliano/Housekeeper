@@ -1,7 +1,9 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import jakarta.transaction.Transactional
 import local.noto.housekeeper.exception.EmailAlreadyRegisteredException
+import local.noto.housekeeper.user.AppUser
+import local.noto.housekeeper.user.AppUserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.time.Instant

@@ -1,6 +1,8 @@
-package local.noto.housekeeper.user
+package local.noto.housekeeper.auth
 
 import local.noto.housekeeper.exception.InvalidCredentialsException
+import local.noto.housekeeper.user.AppUser
+import local.noto.housekeeper.user.AppUserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 

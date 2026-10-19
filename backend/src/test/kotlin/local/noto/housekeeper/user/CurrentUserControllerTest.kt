@@ -1,5 +1,6 @@
 package local.noto.housekeeper.user
 
+import local.noto.housekeeper.auth.RegistrationService
 import local.noto.housekeeper.security.JwtConfig
 import local.noto.housekeeper.security.TokenService
 import org.junit.jupiter.api.BeforeEach
